@@ -1,0 +1,18 @@
+resource "google_project_iam_binding" "project_{{.Name}}" {
+  role    = "{{.Role}}"
+
+  members = [
+    {{ range .Members -}}
+        "{{ . }}",
+    {{ end }}
+  ]
+
+  {{if .Condition }}
+  condition {
+      title       = "{{ .Condition.Title }}"
+      description = "{{ .Condition.Description }}"
+      expression  = "{{ .Condition.Expression }}"
+    }
+  {{ end }}
+}
+
