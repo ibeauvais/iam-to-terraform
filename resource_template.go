@@ -51,8 +51,6 @@ func convertToInput(binding *cloudresourcemanager.Binding, projectId string) Iam
 			Description: binding.Condition.Description,
 			Expression:  strings.ReplaceAll(binding.Condition.Expression, "\"", "\\\""),
 		}
-	} else {
-		condition = nil
 	}
 
 	return IamResourceInput{
